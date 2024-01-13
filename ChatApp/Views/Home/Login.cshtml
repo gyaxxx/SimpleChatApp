@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "MainLayout.cshtml";
+}
+
+<div class="login-container">
+            <h1>
+                <span>Login</span>
+                <span>to</span>
+                <span>our</span>
+                <span>chat</span>
+                <span>system</span>
+            </h1>
+
+            <form>
+                <div class="form-group">
+                    <label for="usernameInput">Username</label>
+                    <input type="text" class="form-control" id="usernameInput" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <input type="password" class="form-control" id="passwordInput" placeholder="">
+                </div>
+                <div class="login-navigation">
+                    <a id="goButton" asp-action="Homepage" asp-controller="Home"><i class="fa-solid fa-arrow-right"></i></a>
+                    <p>Forgot your password? <a asp-action="resetPassword" asp-controller="Home">Click here</a></p>
+                    <p>Dont have an account yet? <a asp-action="createAccount" asp-controller="Home">Create new account</a></p>
+                </div>
+            </form>
+</div>
+
+
+
+
+

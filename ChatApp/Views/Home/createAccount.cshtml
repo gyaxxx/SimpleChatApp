@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "MainLayout.cshtml";
+}
+
+@model TblUser
+<div class="regContainer">
+    <h1>
+        <span>Create</span>
+        <span>new</span>
+        <span>account</span>
+    </h1>
+
+    <form asp-controller="Home" asp-action="CreateAccount" method="post">
+
+        <label asp-for="Username">Username</label>
+        <input type="text" id="usernameInput" asp-for="Username" class="form-control">
+
+        <label asp-for="HashedPassword">Password</label>
+        <input asp-for="HashedPassword" type="password" id="passwordInput" class="form-control">
+
+        <label for="confirmPasswordInput">Confirm password</label>
+        <input type="password" id="confirmPasswordInput" class="form-control">
+
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" type="email" id="emailInput" class="form-control">
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="termsandservices">
+            <label class="form-check-label" for="termsandservices">I have read the <span><a style="color:green" href="#">terms and services</a></span></label>
+        </div>
+
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="sendingnotification">
+            <label class="form-check-label" for="sendingnotification">Allow sending notifications through email</label>
+        </div>
+
+        <button class="btn btn-success form-control" type="submit" id="Create_Account_Button">Create</button>
+
+        <div class="form-group">
+            <p>Already have an account ? <span><a style="color:green" asp-action="Login" asp-controller="Home">Login</a></span></p>
+        </div>
+
+    </form>
+</div>

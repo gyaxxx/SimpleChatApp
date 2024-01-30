@@ -1,38 +1,24 @@
 ﻿@{
     Layout = "MainLayout.cshtml";
+    var sender_username = Context.Session.GetString("Username");
 }
 
-<!-- <div class="userContainer container mt-2">
-        <form class="form-inline" onsubmit="sendMessage(event)" id="messageForm">
-            <div class="form-group">
-                <label for="usernameInput" class="mr-2">Username</label>
-                <input type="text" id="usernameInput" placeholder="" class="form-control mr-5" required>
-
-                <label for="usernameInput" class="mr-2">Say something...</label>
-                <input type="text" id="messageInput" placeholder="" class="form-control mr-5" required>
-
-                <button type="submit" class="btn btn-primary">Send</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="chat-box container">
-       <ul id="messages"></ul>
-    </div> -->
+@model TblUser
 <section class="navigation">
-    <img src="../img/318115456_1239779093244555_2809301419647538659_n.jpg" class="mb-5">
+    <i class="fa-solid fa-message mb-5"></i>
     <i class="fa-solid fa-house mb-4 mt-2"></i>
     <i class="fa-solid fa-message mt-2"></i>
 </section>
-<main class="main_content d-flex">
+
+<main class="main-content d-flex">
     <div class="left-chat">
         <div class="user-navigation d-flex mt-3">
-            <h4 class="ml-3">Username</h4>
+            <h4 class="ml-3">@ViewBag.Username</h4>
             <div class="dropdown ml-2">
                 <i class="fa-solid fa-angle-down dropdown-icon" onclick="toggleDropdown()"></i>
                 <div class="dropdown-content" id="myDropdown">
                     <a href="#">My Profile</a>
-                    <a href="#">Log out</a>
+                    <a asp-action="Login" asp-controller="Home">Log out</a>
                 </div>
             </div>
         </div>
@@ -49,6 +35,36 @@
         </a>
     </div>
     <div class="vertical-line"></div>
+
     <div class="right-chat">
+        <section class="top-panel">
+                <div class="chat-user-info d-flex col-7">
+                    <img src="~/img/303295448_1730773940625295_1896005735597326763_n.jpg" class="rounded-circle mr-2">
+                    <h5>Username</h5>
+                </div>
+
+
+                <ul class="chat-function col-3">
+                    <li><i class="fa-solid fa-phone"></i></li>
+                    <li><i class="fa-solid fa-video"></i></li>
+                    <li><i class="fa-solid fa-circle-info"></i></li>
+                </ul>
+        </section>
+        
+        <section class="main-chat">
+            <ul id="messageList"> </ul>
+        </section>
+
+        <section class="message-input">
+            <form method="post" asp-action="SendMessage" class="d-flex">
+                <input type="text" class="form-control mr-2" id="messageInput">
+                <button type="submit" class="btn btn-primary mr-2" id="sendButton" value="sendMessage"><i class="fa-solid fa-arrow-right"></i></button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-heart" id="reaction-btn"></i></button>
+            </form>
+        </section>
     </div>
 </main>
+
+<script type="text/javascript">
+    var sender_username = '@Html.Raw(Json.Serialize(sender_username))';   
+</script>

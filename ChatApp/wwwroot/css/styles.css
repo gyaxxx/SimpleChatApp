@@ -1,5 +1,9 @@
 @import url('root.css');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+body {
+    font-family: 'Poppins', sans-serif;
+}
 
 /* Login (3/1/2024) */
 .login-container {
@@ -71,7 +75,7 @@
 }
 
     #goButton:hover {
-        color: green;
+        color: white;
         transform: scale(1.2)
     }
 
@@ -105,6 +109,10 @@
         margin-top: 10px;
     }
 
+#Create_Account_Button {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 
 body {
     background-color: black;
@@ -123,10 +131,11 @@ body {
 }
 
 
-.main_content {
+.main-content {
     width: 96vw;
     height: 100vh;
     background-color: #222831;
+    overflow: hidden;
 }
 
 .user-navigation {
@@ -139,6 +148,7 @@ body {
 }
 
 .message-content {
+    margin-left: 10px;
     padding: 10px;
 }
 
@@ -182,9 +192,57 @@ body {
 .show { display: block; }
 
 .vertical-line {
-    border-left: 1px solid #F0ECE5;
+    border-left: 1px solid #393E46;
     height: 100vh;
-    margin: 0 15px;
     margin-left: 100px;
 }
 
+
+.alert p {
+    color: red;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.right-chat {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #222831;
+    height: 100vh;
+}
+
+.message-input {
+    width: 70vw;
+    position:absolute;
+    bottom: 0;
+    padding: 50px;
+}
+
+#reaction-btn {
+    border-radius: 10px;
+}
+
+.top-panel {
+    display: flex;
+    width: 100vw;
+    height: 50px;
+    background-color: #393E46;
+    padding: 10px;
+}
+
+.main-chat {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.chat-function {
+    display:flex;
+}
+
+.chat-function li {
+    list-style:none;
+    margin-left: 20px;
+}

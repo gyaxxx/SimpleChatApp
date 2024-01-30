@@ -2,6 +2,8 @@
     Layout = "MainLayout.cshtml";
 }
 
+@model TblUser
+
 <div class="login-container">
             <h1>
                 <span>Login</span>
@@ -11,17 +13,22 @@
                 <span>system</span>
             </h1>
 
-            <form>
+            @* Set Method = post and Action for <form> *@
+            <form method="post" asp-action="Login" asp-controller="Home">
                 <div class="form-group">
                     <label for="usernameInput">Username</label>
-                    <input type="text" class="form-control" id="usernameInput" placeholder="">
+                    <input type="text" asp-for="Username" class="form-control" id="usernameInput" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="passwordInput">Password</label>
-                    <input type="password" class="form-control" id="passwordInput" placeholder="">
+                    <input type="password" asp-for="HashedPassword"class="form-control" id="passwordInput" placeholder="">
                 </div>
-                <div class="login-navigation">
-                    <a id="goButton" asp-action="Homepage" asp-controller="Home"><i class="fa-solid fa-arrow-right"></i></a>
+                @if(ViewBag.Error != null)
+                {
+                   <div class="alert"><p>Wrong username or password</p></div>
+                }
+        <div class="login-navigation">
+                    <button type="submit" class="btn-success" id="goButton" ><i class="fa-solid fa-arrow-right"></i></button>
                     <p>Forgot your password? <a asp-action="resetPassword" asp-controller="Home">Click here</a></p>
                     <p>Dont have an account yet? <a asp-action="createAccount" asp-controller="Home">Create new account</a></p>
                 </div>

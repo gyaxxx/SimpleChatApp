@@ -1,5 +1,6 @@
-using ChatApp.Models;
+﻿using ChatApp.Models;
 using Microsoft.EntityFrameworkCore;
+using ChatApp;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MychatappDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ChatAppContext")));
+
+builder.Services.AddSignalR();
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;  
+});
 
 var app = builder.Build();
 
@@ -21,13 +32,14 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+// Gọi Session trước Routing
+app.UseSession();
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Login}/{id?}");
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
